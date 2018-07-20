@@ -1,29 +1,68 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <div>
+    <div class="netflix">
+      <img src="./assets/netfl.svg" alt="" class="netflix">
     </div>
-    <router-view/>
+    <app-toolbar></app-toolbar>
+    <app-footer></app-footer>
+    <div v-for="(film,key) in filmList" v-bind:key="film.index">{{film.title}}</div>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+
+<script>
+import AppFooter from './views/AppFooter.vue';
+import AppToolbar from './views/AppToolbar.vue';
+import axios from 'axios'
+import getFilms from './getting.js';
+
+export default {
+  data(){
+    return{
+      filmList:[],
+      configs:{},
+      posters:[],
+      baseUrl:'https://api.themoviedb.org/3/',
+      key:'2ddb0c35446d893960d59afe57fcaeb6'
     }
-  }
+  },
+  components: {
+    AppFooter,
+    AppToolbar
+  },
+methods:{
+   getfilms(){
+      axios.get(`${this.baseUrl}movie/top_rated?api_key=${this.key}&language=en-US&page=1 `)
+         .then(res=>{
+            this.filmList=res.data.results;
+            })
+         .catch(error=>console.log(error))
+   },
+   async getConfig(){
+      try{
+     const res= await axios.get(`${this.baseUrl}configuration?api_key=${this.key}`)
+      this.configs=res.data.images
+      }
+      catch(e){
+         console.log(e)
+         }
+   },
+   async getPictures(){
+      await console.log(this.filmList)
+      await this.getConfig();
+      // await axios.get(`${this.filmList.backdrop_path.map(item=>this.baseUrl+this.configs.poster_sizes[2]+item)}`)
+   }
+},
+
+mounted(){
+   this.getfilms();
+   this.getPictures();
+}
+}
+</script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lag="scss">
+.netflix{
+  height: 50px;
 }
 </style>

@@ -5,8 +5,9 @@
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat>Home</v-btn>
-          <v-btn flat>About</v-btn>
-          <v-btn flat>Contact</v-btn>
+          <v-btn flat>
+            Popular</v-btn>
+          <v-btn flat>Now in cinema</v-btn>
         </v-toolbar-items>
     </v-toolbar>
 

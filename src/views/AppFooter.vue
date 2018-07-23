@@ -2,7 +2,6 @@
   <v-footer
     dark
     height="auto"
-    fixed
   >
     <v-card
       class="flex"
@@ -19,12 +18,12 @@
           dark
           icon
         >
-          <v-icon size="24px">{{ icon }}</v-icon>
+        <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>
       </v-card-title>
 
       <v-card-actions class="grey darken-3 justify-center">
-        &copy;2018 — <strong>Dart Veider</strong>
+        &copy;2018 — <strong>Dart Veider & <a href="https://icons8.com">Icon pack by Icons8</a></strong>
       </v-card-actions>
     </v-card>
   </v-footer>

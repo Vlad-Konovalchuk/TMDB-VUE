@@ -10,7 +10,6 @@
 import AppFooter from './AppFooter.vue';
 import AppToolbar from './AppToolbar.vue';
 import FilmsList from './FilmsList.vue';
-import getFilms from '../getting.js';
 export default {
   components: {
     AppFooter,
